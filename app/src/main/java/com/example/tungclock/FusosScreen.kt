@@ -36,13 +36,15 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.compose.material3.ExperimentalMaterial3Api
+import java.time.ZoneId
+import androidx.compose.material3.OutlinedTextFieldDefaults
 
 
 private val Fundo = Color(0xFF0B0E17)
 private val CardFundo = Color(0xFF171D2B)
 private val Roxo = Color(0xFF9B7CFF)
 private val Texto = Color.White
-private val TextoSecundario = Color(0xFF9CA3B5)
+private val TextoSecundario = Color.White
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -66,6 +68,10 @@ fun FusosScreen(
     }
 
     var offsetTexto by remember {
+        mutableStateOf("")
+    }
+
+    var erro by remember {
         mutableStateOf("")
     }
 
@@ -119,7 +125,16 @@ fun FusosScreen(
                 modifier = Modifier.fillMaxWidth(),
                 label = {
                     Text("Cidade")
-                }
+                },
+                colors = OutlinedTextFieldDefaults.colors(
+                    focusedTextColor = Color.White,
+                    unfocusedTextColor = Color.White,
+                    focusedLabelColor = Color.White,
+                    unfocusedLabelColor = Color.White,
+                    cursorColor = Color.White,
+                    focusedBorderColor = Color.White,
+                    unfocusedBorderColor = Color.White
+                ),
             )
 
             Spacer(
@@ -134,7 +149,16 @@ fun FusosScreen(
                 modifier = Modifier.fillMaxWidth(),
                 label = {
                     Text("País")
-                }
+                },
+                colors = OutlinedTextFieldDefaults.colors(
+                    focusedTextColor = Color.White,
+                    unfocusedTextColor = Color.White,
+                    focusedLabelColor = Color.White,
+                    unfocusedLabelColor = Color.White,
+                    cursorColor = Color.White,
+                    focusedBorderColor = Color.White,
+                    unfocusedBorderColor = Color.White
+                ),
             )
 
             Spacer(
@@ -152,7 +176,16 @@ fun FusosScreen(
                 },
                 placeholder = {
                     Text("Ex: America/Sao_Paulo")
-                }
+                },
+                colors = OutlinedTextFieldDefaults.colors(
+                    focusedTextColor = Color.White,
+                    unfocusedTextColor = Color.White,
+                    focusedLabelColor = Color.White,
+                    unfocusedLabelColor = Color.White,
+                    cursorColor = Color.White,
+                    focusedBorderColor = Color.White,
+                    unfocusedBorderColor = Color.White
+                ),
             )
 
             Spacer(
@@ -170,7 +203,16 @@ fun FusosScreen(
                 },
                 placeholder = {
                     Text("Ex: -3")
-                }
+                },
+                colors = OutlinedTextFieldDefaults.colors(
+                    focusedTextColor = Color.White,
+                    unfocusedTextColor = Color.White,
+                    focusedLabelColor = Color.White,
+                    unfocusedLabelColor = Color.White,
+                    cursorColor = Color.White,
+                    focusedBorderColor = Color.White,
+                    unfocusedBorderColor = Color.White
+                ),
             )
 
             Spacer(
@@ -180,14 +222,33 @@ fun FusosScreen(
             Button(
                 onClick = {
 
+                    erro = ""
+
                     val offset = offsetTexto.toIntOrNull()
 
-                    if (
-                        cidade.isNotBlank() &&
-                        pais.isNotBlank() &&
-                        zona.isNotBlank() &&
-                        offset != null
-                    ) {
+                    if (cidade.isBlank()) {
+                        erro = "Digite uma cidade."
+                        return@Button
+                    }
+
+                    if (pais.isBlank()) {
+                        erro = "Digite um país."
+                        return@Button
+                    }
+
+                    if (zona.isBlank()) {
+                        erro = "Digite uma zona válida."
+                        return@Button
+                    }
+
+                    if (offset == null) {
+                        erro = "Digite um UTC válido. Exemplo: -3"
+                        return@Button
+                    }
+
+                    try {
+
+                        ZoneId.of(zona)
 
                         val novoId =
                             if (fusos.isEmpty()) {
@@ -201,9 +262,9 @@ fun FusosScreen(
                         fusos.add(
                             FusoHorario(
                                 id = novoId,
-                                cidade = cidade,
-                                pais = pais,
-                                zona = zona,
+                                cidade = cidade.trim(),
+                                pais = pais.trim(),
+                                zona = zona.trim(),
                                 offset = offset
                             )
                         )
@@ -212,6 +273,10 @@ fun FusosScreen(
                         pais = ""
                         zona = ""
                         offsetTexto = ""
+
+                    } catch (e: Exception) {
+
+                        erro = "Zona inválida. Exemplo: America/Sao_Paulo"
                     }
                 },
                 modifier = Modifier.fillMaxWidth()
@@ -223,6 +288,18 @@ fun FusosScreen(
                 )
 
                 Text(" ADICIONAR FUSO")
+            }
+            if (erro.isNotEmpty()) {
+
+                Spacer(
+                    modifier = Modifier.height(8.dp)
+                )
+
+                Text(
+                    text = erro,
+                    color = Color(0xFFFF6B6B),
+                    fontSize = 12.sp
+                )
             }
 
             Spacer(
