@@ -1,4 +1,4 @@
-⏰ Tun Tun Clock
+[⏰ Tun Tun Clock
 
 Desenvolvimento de Aplicativos Móveis — Trabalho 1
 
@@ -224,3 +224,4 @@ O projeto Tun Tun Clock foi desenvolvido como aplicação prática dos primeiros
 As três telas programadas possuem diferentes componentes e organizações de layout, utilizando estados, botões, cards, campos de entrada, Row, Column, Box e outros recursos trabalhados em aula.
 
 As funcionalidades mais avançadas, como navegação real e persistência de dados, poderão ser implementadas posteriormente conforme esses conteúdos forem apresentados na disciplina.
+](https://github.com/konnopedro/Clock_Kotlin_Trabalho-2)
