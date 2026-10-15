@@ -35,7 +35,9 @@ import java.time.ZonedDateTime
 import java.time.format.DateTimeFormatter
 import android.os.Build
 import androidx.annotation.RequiresApi
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.TopAppBarDefaults
 
 
 private val Fundo = Color(0xFF0B0E17)
@@ -63,6 +65,7 @@ fun DetalheFusoScreen(
         Column(
             modifier = Modifier
                 .fillMaxSize()
+                .fillMaxHeight()
                 .background(Fundo)
                 .padding(20.dp)
         ) {
@@ -144,7 +147,12 @@ fun DetalheFusoScreen(
                             contentDescription = "Voltar"
                         )
                     }
-                }
+                },
+                colors = TopAppBarDefaults.topAppBarColors(
+                    containerColor = Fundo,
+                    titleContentColor = Color.White,
+                    navigationIconContentColor = Color.White
+                )
             )
         }
     ) { innerPadding ->

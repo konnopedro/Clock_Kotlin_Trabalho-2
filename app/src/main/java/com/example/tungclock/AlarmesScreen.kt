@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -36,6 +37,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.material3.TopAppBarDefaults
 
 private val Fundo = Color(0xFF0B0E17)
 private val CardFundo = Color(0xFF171D2B)
@@ -74,27 +76,30 @@ fun AlarmesScreen(
         topBar = {
 
             TopAppBar(
-
                 title = {
                     Text(
                         text = "Meus Alarmes",
-                        color = Texto
+                        color = Color.White
                     )
                 },
 
                 navigationIcon = {
-
                     IconButton(
                         onClick = onVoltar
                     ) {
-
                         Icon(
                             imageVector = Icons.Default.ArrowBack,
                             contentDescription = "Voltar",
-                            tint = Texto
+                            tint = Color.White
                         )
                     }
-                }
+                },
+
+                colors = TopAppBarDefaults.topAppBarColors(
+                    containerColor = Fundo,
+                    titleContentColor = Color.White,
+                    navigationIconContentColor = Color.White
+                )
             )
         }
 
@@ -104,6 +109,7 @@ fun AlarmesScreen(
 
             modifier = Modifier
                 .fillMaxSize()
+                .fillMaxHeight()
                 .background(Fundo)
                 .padding(innerPadding)
                 .padding(16.dp)

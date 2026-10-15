@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -31,6 +32,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.runtime.snapshots.SnapshotStateList
+import androidx.compose.material3.TopAppBarDefaults
 
 private val Fundo = Color(0xFF0B0E17)
 private val Roxo = Color(0xFF9B7CFF)
@@ -54,6 +56,7 @@ fun DetalheAlarmeScreen(
         Column(
             modifier = Modifier
                 .fillMaxSize()
+                .fillMaxHeight()
                 .background(Fundo)
                 .padding(20.dp)
         ) {
@@ -105,7 +108,12 @@ fun DetalheAlarmeScreen(
                             contentDescription = "Voltar"
                         )
                     }
-                }
+                },
+                colors = TopAppBarDefaults.topAppBarColors(
+                    containerColor = Fundo,
+                    titleContentColor = Color.White,
+                    navigationIconContentColor = Color.White
+                )
             )
         }
     ) { innerPadding ->

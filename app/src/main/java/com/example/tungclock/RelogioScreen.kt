@@ -6,6 +6,7 @@ import androidx.annotation.RequiresApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -68,6 +69,7 @@ fun RelogioScreen(
     Column(
         modifier = Modifier
             .fillMaxWidth()
+            .fillMaxHeight()
             .background(Fundo)
             .padding(paddingValues)
             .padding(20.dp)
@@ -76,7 +78,9 @@ fun RelogioScreen(
         Text(
             text = "TUN TUN CLOCK",
             color = Roxo,
-            fontSize = 14.sp
+            fontSize = 14.sp,
+            modifier = Modifier.fillMaxWidth(),
+            textAlign = TextAlign.Center
         )
 
         Spacer(

@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -38,6 +39,7 @@ import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.compose.material3.ExperimentalMaterial3Api
 import java.time.ZoneId
 import androidx.compose.material3.OutlinedTextFieldDefaults
+import androidx.compose.material3.TopAppBarDefaults
 
 
 private val Fundo = Color(0xFF0B0E17)
@@ -94,7 +96,12 @@ fun FusosScreen(
                             contentDescription = "Voltar"
                         )
                     }
-                }
+                },
+                colors = TopAppBarDefaults.topAppBarColors(
+                    containerColor = Fundo,
+                    titleContentColor = Color.White,
+                    navigationIconContentColor = Color.White
+                )
             )
         }
     ) { innerPadding ->
@@ -102,6 +109,7 @@ fun FusosScreen(
         Column(
             modifier = Modifier
                 .fillMaxSize()
+                .fillMaxHeight()
                 .background(Fundo)
                 .padding(innerPadding)
                 .padding(16.dp)
